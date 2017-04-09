@@ -7,9 +7,15 @@
     "start": "node server/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "engines": {
+    "node": "6.9.2"
+  },
   "author": "cjwoodru2",
   "license": "ISC",
   "dependencies": {
     "express": "^4.15.2"
+  },
+  "devDependencies": {
+    "socket.io": "^1.7.3"
   }
 }

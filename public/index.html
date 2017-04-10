@@ -8,16 +8,6 @@
         <p>Welcome to the Sockets Chat app</p>
         
         <script type="text/javascript" src="/socket.io/socket.io.js"></script>
-        <script type="text/javascript">
-            var socket = io();
-            
-            socket.on('connect', () => {
-                console.log('connected to the server - socket!');
-            });
-            
-            socket.on('disconnect', () => {
-                console.log('disconnected from the server');
-            });
-        </script>
+        <script type="text/javascript" src="/js/index.js"></script>
     </body>
 </html>

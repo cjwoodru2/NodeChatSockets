@@ -83,10 +83,6 @@ button:disabled {
   display: flex;
 }
 
-.chat__mobileLogo > img {
-  display: none;
-}
-
 .chat__sidebar {
   overflow-y: scroll;
   width: 260px;
@@ -185,30 +181,6 @@ button:disabled {
   * {
     font-size: 1rem;
   }
-  
-  .chat {
-    display:flex;
-    flex-wrap:wrap;
-    flex-direction: column;
-    justify-content:flex-start;
-    flex: 1;
-    flex-grow: 1;
-    flex-shrink: 1;
-    flex-basis: auto;
-  }
-  
-  .chat__mobileLogo > img {
-    display: flex;
-    width: 100%;
-    height: auto;
-    order 1;
-  }
-  
-  .chat__messages {
-    display: flex;
-    height: auto;
-    order: 2;
-  }
 
   .chat__sidebar {
     display: none;
@@ -216,7 +188,6 @@ button:disabled {
 
   .chat__footer {
     flex-direction: column;
-    order: 3;
   }
 
   .chat__footer form {

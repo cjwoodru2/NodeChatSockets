@@ -4,7 +4,7 @@ const path = require("path");
 const socketIO = require("socket.io");
 
 // using join path to point statis to public dir
-const { generateMessage } = require("./utils/message");
+const { generateMessage, generateLocationMessage } = require("./utils/message");
 const publicPath = path.join(__dirname + '/../public');
 const app = express();
 const server = http.createServer(app);
@@ -28,11 +28,10 @@ io.on('connection', (socket) => {
 
         io.emit('newMessage', generateMessage(message.from, message.text));
         callback('This is from the server');
-        // socket.broadcast.emit('newMessage', {
-        //     from: message.from,
-        //     text: message.text,
-        //     createdAt: new Date().getTime()
-        // });
+   });
+   
+   socket.on('createLocationMessage', (coords) => {
+       io.emit('newLocationMessage', generateLocationMessage('Location Admin', coords.latitude, coords.longitude));
    });
    
    socket.on('disconnect', (socket) => {

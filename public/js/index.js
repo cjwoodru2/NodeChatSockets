@@ -10,5 +10,5 @@
             });
             
             socket.on('newMessage', function (message) {
-                console.log('New message received', message)
+                console.log('New message received', message);
             })

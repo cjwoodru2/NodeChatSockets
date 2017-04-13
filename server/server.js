@@ -26,8 +26,8 @@ io.on('connection', (socket) => {
    });
    
    socket.on('disconnect', (socket) => {
-        console.log('user has disconnected')
-    })
+        console.log('user has disconnected');
+    });
 });
 
 

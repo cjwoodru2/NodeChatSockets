@@ -61,6 +61,13 @@ button:disabled {
   width: 230px;
 }
 
+.centered-form__form h1 {
+  text-align: center;
+  font-size: 2rem;
+  color: #768089;
+  padding-top: 1rem;
+}
+
 .form-field {
   margin: 20px 0;
 }

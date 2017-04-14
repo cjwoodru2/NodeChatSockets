@@ -5,6 +5,7 @@ const socketIO = require("socket.io");
 
 // using join path to point statis to public dir
 const { generateMessage, generateLocationMessage } = require("./utils/message");
+const { isRealString } = require("./utils/validation");
 const publicPath = path.join(__dirname + '/../public');
 const app = express();
 const server = http.createServer(app);
@@ -18,10 +19,18 @@ io.on('connection', (socket) => {
    console.log('new user connected'); 
     
     // Welcome all joined users to the chat app
-        socket.emit('newMessage', generateMessage('Admin', 'Welcome to the Sockets/Node chat app'));
+    socket.emit('newMessage', generateMessage('Admin', 'Welcome to the Sockets/Node chat app'));
     
     // Alerts all users that a new user has joined
-        socket.broadcast.emit('newMessage', generateMessage('Admin', 'A new user has joined'));
+    socket.broadcast.emit('newMessage', generateMessage('Admin', 'A new user has joined'));
+    
+    socket.on('join', (params, callback) => {
+        if (!isRealString(params.name) || !isRealString(params.room)) {
+            callback('Valid name and room name are required');
+        }
+        
+        callback();
+    });
         
     socket.on('createMessage', (message, callback) => {
        console.log('createMessage', message);

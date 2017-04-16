@@ -9,23 +9,44 @@
     
     <body class=centered-form>
         <div class="centered-form__form">
-            <h1>hooli Chat</h1>
             <form action="/chat.html">
+                <!--from header-->
                 <div class="form-field">
                     <h3>Join a Chat</h3>
                 </div>
+                <!--display name for chat-->
                 <div class="form-field">
-                    <label for="name">Display name</label>
-                    <input type="text" name="name" autofocus/>
+                    <label>Display name</label>
+                    <input type="text" name="name" id="name" autofocus/>
                 </div>
-                <div class="form-field">
-                    <label for="room">Room name</label>
-                    <input type="text" name="room"/>
+                <!--list of active rooms-->
+                <div class="form-field" id="select-field">
+                    <label>Active rooms</label>
+                    <select name="select-room" id="select">
+                        <option>Choose a room</option>
+                        <option>Create new room</option>
+                    </select>
                 </div>
+                <!--create new room name input-->
+                <div class="form-field" id="input-field">
+                    <label>Room name</label>
+                    <input type="text" name="room" id="input"/>
+                </div>
+                <!--submit button-->
                 <div class="form-field">
                     <button>Join</button>
                 </div>
             </form>
         </div>
+        <script id="option-template" type="text/template">
+            <option>{{ room }}</option>
+        </script>
+        <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="/js/libs/mustache.js"></script>
+        <script src="/js/libs/deparam.js"></script>
+        <script src="/js/index.js"></script>
     </body>
 </html>

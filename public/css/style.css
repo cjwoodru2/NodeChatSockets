@@ -86,6 +86,10 @@ button:disabled {
   padding: 10px;
 }
 
+#input-field {
+  display: none;
+}
+
 .chat {
   display: flex;
 }

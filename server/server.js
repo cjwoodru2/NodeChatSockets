@@ -5,7 +5,7 @@ const socketIO = require("socket.io");
 
 // using join path to point statis to public dir
 const { generateMessage, generateLocationMessage } = require("./utils/message");
-const { isRealString } = require("./utils/validation");
+const { isRealString, isInList } = require("./utils/validation");
 const { Users } = require("./utils/users");
 
 const publicPath = path.join(__dirname + '/../public');
@@ -25,6 +25,7 @@ io.on('connection', (socket) => {
         if (!isRealString(params.name) || !isRealString(params.room)) {
             return callback('Valid name and room name are required');
         }
+
         
         socket.join(params.room);
         users.removeUser(socket.id);
@@ -32,6 +33,7 @@ io.on('connection', (socket) => {
         
         
         io.to(params.room).emit('updateUserList', users.getUserList(params.room));
+        io.to('index').emit('updateRoomList', users.getRoomList());
          // Welcome all joined users to the chat app
         socket.emit('newMessage', generateMessage('Admin', 'Welcome to the Sockets/Node chat app'));
         // Alerts all users that a new user has joined
@@ -39,6 +41,11 @@ io.on('connection', (socket) => {
         
         callback();
     });
+    
+    socket.on('joinIndex', () => {
+        socket.join('index');
+        socket.emit('updateRoomList', users.getRoomList())
+    })
         
     socket.on('createMessage', (message, callback) => {
         var user = users.getUser(socket.id);
@@ -63,6 +70,7 @@ io.on('connection', (socket) => {
         
         if (user) {
             io.to(user.room).emit('updateUserList', users.getUserList(user.room));
+            io.to('index').emit('updateRoomList', users.getRoomList());
             io.to(user.room).emit('newMessage', generateMessage('Admin', `${user.name} has left`));
         }
     });

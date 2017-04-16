@@ -66,6 +66,7 @@ button:disabled {
   font-size: 2rem;
   color: #768089;
   padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 
 .form-field {
